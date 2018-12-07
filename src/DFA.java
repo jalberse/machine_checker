@@ -42,6 +42,8 @@ public class DFA {
         size = states.size();
     }
 
+    // TODO: Function to read an input symbol and advance
+
     /*
         Adds the state to the machine. If this is the first state added to the machine, it is set as the starting state
         and the current state.
