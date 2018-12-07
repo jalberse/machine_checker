@@ -14,4 +14,12 @@ public class Transition {
         this.inputSymbol = inputSymbol;
         this.result = result;
     }
+
+    public String getInputSymbol(){
+        return inputSymbol;
+    }
+
+    public State getResult(){
+        return result;
+    }
 }
