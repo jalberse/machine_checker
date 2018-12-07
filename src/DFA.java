@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.HashSet;
 
 /*
     A deterministic finite automata
@@ -16,9 +16,7 @@ import java.util.HashMap;
 public class DFA {
     private State startState;
     private State currentState;
-    private HashMap<Integer,State> states;
-        // Note: We use a HashMap rather than a HashSet because we may eventually want to allow the user to dynamically
-        // Add states and transitions to the machine at runtime.
+    private HashSet<State> states;
     int size; // the number of states
 
     /*
@@ -27,19 +25,21 @@ public class DFA {
     public DFA(){
         this.startState = null;
         this.currentState = null;
-        this.states = new HashMap<Integer,State>();
+        this.states = new HashSet<State>();
+        this.size = 0;
     }
 
     /*
         Create a DFA with the given start state and map of states
 
-        @param startStateId the id of the start state
+        @param startState The start state
         @states the states of the machine
      */
-    public DFA(Integer startStateId, HashMap<Integer,State> states) {
-        this.startState = states.get(startStateId);
+    public DFA(State startState, HashSet<State> states) {
+        this.startState = startState;
         this.currentState = startState;
         this.states = states;
+        size = states.size();
     }
 
     /*
@@ -52,7 +52,7 @@ public class DFA {
             startState = state;
             currentState = state;
         }
-        if (states.put(state.getId(),state) != null) ++size; // add the state and increment size if succesful
+        if (states.add(state)) ++size; // add the state and increment size if succesful
     }
 
 
@@ -64,12 +64,12 @@ public class DFA {
         @param transition the transition from the state to another
      */
     public void addTransition(State fromState, Transition transition) {
-        if (!states.containsKey(transition.getResult().getId())) {
+        if (!states.contains(transition.getResult())) {
             // If the state is not already in the machine, add it
             this.addState(transition.getResult());
         }
         // Associate the transition with fromState
-        states.get(fromState.getId()).addTransition(transition);
+        fromState.addTransition(transition);
     }
 
     // TODO: Add and remove states and transitions
