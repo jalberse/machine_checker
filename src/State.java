@@ -27,6 +27,13 @@ public class State {
         transitions.put(transition.getInputSymbol(),transition);
     }
 
+    /*
+    Given an input symbol, find the transition 
+     */
+    public State getNextState(String inputSymbol) {
+
+    }
+
     public int getId() { return id; }
     public boolean isAccepting() { return accepting; }
 

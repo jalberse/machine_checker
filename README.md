@@ -45,6 +45,7 @@ machine_checker [word] [Y/N]
 - ...
 - Let user define the .csv file as an optional parameter
 - Run against a batch of examples/counter-examples
+- Graphical interface
 
 ### Further development
 
