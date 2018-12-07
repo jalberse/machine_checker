@@ -58,6 +58,14 @@ public class DFA {
         states.get(fromState.getId()).addTransition(transition);
     }
 
+    // Getters
+    public State getStartState() {
+        return this.startState;
+    }
+    public State getCurrentState() {
+        return this.currentState;
+    }
+
     // Setters
     public void setStartState(State state) {
         this.startState = state;
