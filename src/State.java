@@ -11,10 +11,16 @@ public class State {
     private HashMap<String,Transition> transitions; // Transitions from this state to another. Key is input symbol
     private boolean accepting; // True if element of set of accepting states
 
+    public State() {
+        this.id = 0;
+        this.accepting = false;
+        this.transitions = new HashMap<String,Transition>();
+    }
+
     public State(int id) {
         this.id = id;
-        this.transitions = new HashMap<String,Transition>();
         this.accepting = false;
+        this.transitions = new HashMap<String,Transition>();
     }
 
     /*

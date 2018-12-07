@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /*
     A deterministic finite automata
     M = (Q, A, T, q0, F) where:
@@ -12,5 +14,13 @@
     @date 12/7/2018
  */
 public class DFA {
-    
+    private State startState;
+    private State currentState;
+    private HashMap<Integer,State> states;
+
+    public DFA(){
+        this.startState = new State(0);
+        this.currentState = startState;
+        states = new HashMap<Integer,State>();
+    }
 }
