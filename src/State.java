@@ -28,10 +28,14 @@ public class State {
     }
 
     /*
-    Given an input symbol, find the transition 
+    Given an input symbol, find the transition
+
+    @param inputSymbol the input symbol for the transition
+    @return the resultant state of the transition function for the given input symbol on this state
+            NULL if there is no transition specified for that input symbol
      */
     public State getNextState(String inputSymbol) {
-
+        return transitions.get(inputSymbol);
     }
 
     public int getId() { return id; }
