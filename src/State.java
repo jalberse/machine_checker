@@ -8,12 +8,12 @@ import java.util.HashMap;
 */
 public class State {
     private int id; // Unique identifier for the state
-    private HashMap<String,State> transitions; // Transitions from this state to another. Key is input symbol
+    private HashMap<String,Transition> transitions; // Transitions from this state to another. Key is input symbol
     private boolean accepting; // True if element of set of accepting states
 
     public State(int id) {
         this.id = id;
-        this.transitions = new HashMap<String,State>();
+        this.transitions = new HashMap<String,Transition>();
         this.accepting = false;
     }
 
@@ -34,7 +34,7 @@ public class State {
             NULL if there is no transition specified for that input symbol
      */
     public State getNextState(String inputSymbol) {
-        return transitions.get(inputSymbol);
+        return transitions.get(inputSymbol).getResult();
     }
 
     public int getId() { return id; }
@@ -48,7 +48,7 @@ public class State {
         buf.append(String.format("State Summary%nid: %d%n",this.id);
         buf.append(String.format("Accepting: %b%n",this.accepting));
         buf.append(String.format("Transitions:%n"));
-        transitions.forEach((k,v) -> buf.append(String.format("(q%d,%s) -> q%d",this.id,k,v.id)));
+        transitions.forEach((k,v) -> buf.append(String.format("(q%d,%s) -> q%d",this.id,k,v.getResult().id)));
         return buf.toString();
     }
 }
