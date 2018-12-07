@@ -1,3 +1,5 @@
+Checking github configured correctly to track contributions
+
 ## Machine Checker
 
 ### Intent
