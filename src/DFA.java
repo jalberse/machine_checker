@@ -32,6 +32,9 @@ public class DFA {
 
     /*
         Create a DFA with the given start state and map of states
+
+        @param startStateId the id of the start state
+        @states the states of the machine
      */
     public DFA(Integer startStateId, HashMap<Integer,State> states) {
         this.startState = states.get(startStateId);
@@ -86,4 +89,6 @@ public class DFA {
     public void setCurrentState(State state) {
         this.currentState = state;
     }
+
+    // TODO: Print and toString
 }
