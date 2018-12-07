@@ -17,10 +17,52 @@ public class DFA {
     private State startState;
     private State currentState;
     private HashMap<Integer,State> states;
+    int size; // the number of states
 
+    /*
+        Creates a DFA with no states or transitions
+     */
     public DFA(){
-        this.startState = new State(0);
-        this.currentState = startState;
+        this.startState = null;
+        this.currentState = null;
         states = new HashMap<Integer,State>();
+    }
+
+    /*
+        Adds the state to the machine. If this is the first state added to the machine, it is set as the starting state
+        and the current state.
+        If there is already a state in the machine with the same ID, it is replaced.
+     */
+    public void addState(State state){
+        if (startState == null) {
+            startState = state;
+            currentState = state;
+        }
+        if (states.put(state.getId(),state) != null) ++size; // add the state and increment size if succesful
+    }
+
+
+    /*
+        Adds a transition from the given state to the target state specified by the transition.
+        If the target state is not already a state in the machine, it is added.
+
+        @param state the state to add a transition from
+        @param transition the transition from the state to another
+     */
+    public void addTransition(State fromState, Transition transition) {
+        if (!states.containsKey(transition.getResult().getId())) {
+            // If the state is not already in the machine, add it
+            this.addState(transition.getResult());
+        }
+        // Associate the transition with fromState
+        states.get(fromState.getId()).addTransition(transition);
+    }
+
+    // Setters
+    public void setStartState(State state) {
+        this.startState = state;
+    }
+    public void setCurrentState(State state) {
+        this.currentState = state;
     }
 }
