@@ -30,8 +30,11 @@ public class DFA {
         this.states = new HashMap<Integer,State>();
     }
 
-    public DFA(State startState, HashMap<Integer,State> states) {
-        this.startState = startState;
+    /*
+        Create a DFA with the given start state and map of states
+     */
+    public DFA(Integer startStateId, HashMap<Integer,State> states) {
+        this.startState = states.get(startStateId);
         this.currentState = startState;
         this.states = states;
     }
