@@ -2,17 +2,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
-    Models a single state of a machine (vertex in its graph)
+    Models a single state of a machine (vertex in its graph), including id, transitions, and whether or not it is
+    an accepting state.
 
     @author John Alberse
 */
 public class State {
     private int id; // Unique identifier for the state
-    private HashMap transitions = new HashMap(); // <char, Transtion>
+    private HashMap<String,State> transitions; // Transitions from this state to another. Key is input symbol
     private boolean accepting; // True if element of set of accepting states
 
     public State(int id) {
         this.id = id;
+        this.transitions = new HashMap<String,State>();
         this.accepting = false;
     }
 
@@ -23,5 +25,20 @@ public class State {
      */
     public void addTransition(Transition transition) {
         transitions.put(transition.getInputSymbol(),transition);
+    }
+
+    public int getId() { return id; }
+    public boolean isAccepting() { return accepting; }
+
+    /*
+    Summarize the state
+     */
+    public String toString() {
+        StringBuffer buf = new StringBuffer();
+        buf.append(String.format("State Summary%nid: %d%n",this.id);
+        buf.append(String.format("Accepting: %b%n",this.accepting));
+        buf.append(String.format("Transitions:%n"));
+        transitions.forEach((k,v) -> buf.append(String.format("(q%d,%s) -> q%d",this.id,k,v.id)));
+        return buf.toString();
     }
 }
