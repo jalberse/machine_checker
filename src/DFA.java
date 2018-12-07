@@ -66,6 +66,8 @@ public class DFA {
         states.get(fromState.getId()).addTransition(transition);
     }
 
+    // TODO: Add and remove states and transitions
+
     // Getters
     public State getStartState() {
         return this.startState;

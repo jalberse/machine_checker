@@ -40,6 +40,7 @@ machine_checker [word] [Y/N]
 
 ### TODO
 
+- Test machine construction (simple and dynamic)
 - Define .csv format
 - UML class/sequence diagrams
 - ...
