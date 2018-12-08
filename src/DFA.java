@@ -41,9 +41,7 @@ public class DFA {
         this.states = states;
         size = states.size();
     }
-
-    // TODO: Function to read an input symbol and advance
-
+    
     /*
         Execute one step of the DFA, i.e. read the inputSymbol and change state accordingly
 
