@@ -17,7 +17,7 @@ public class DFA {
     final private int START_STATE = 0;
     private HashSet<Integer> states;
     private HashSet<Character> inputAlphabet;
-    private HashMap<Integer,HashMap<Character,Integer>> transitionFunction; // T, Maps (Q x A) -> Q
+    private HashMap<TransitionKey,Integer> transitionFunction; // T, Maps (Q x A) -> Q
     private HashSet<Integer> acceptingStates; // F
     private int currentState;
 
@@ -32,6 +32,12 @@ public class DFA {
         this.currentState = 0;
     }
 
+    /*
+        Constructs a DFA from the file specified
+     */
+    //public DFA(String filename) {
+        // TODO
+    //}
 
     /*
         Execute one step of the DFA, i.e. read the inputSymbol and change state accordingly
@@ -42,20 +48,47 @@ public class DFA {
 
     }
 
-    // Getters
-    public Integer getStartState() {
-        return this.startState;
+    /*
+        Defines the input alphabet as all characters present in the string. Overwrites existing inputAlphabet if any.
+        @param alpha The string containing the new alphabet, e.g. ab01 if the alphabet is (a,b,0,1)
+     */
+    public void defineInputAlphabet(String alpha) {
+        inputAlphabet.clear();
+        for (int i = 0; i < alpha.length(); ++i){
+            inputAlphabet.add(alpha.charAt(i));
+        }
     }
+
+    /*
+        Adds a new state.
+        If isAccepting is true, then the state is added to the set of accepting states.
+        @param id The id of the state to add
+     */
+    public void addState(Integer id, boolean isAccepting){
+        states.add(id);
+        if (isAccepting) acceptingStates.add(id);
+    }
+
+    public void addTransition(Integer fromId, Integer toId, Character inputSymbol) throws InvalidTransitionException {
+        if (states.contains(fromId) && states.contains(toId) && inputAlphabet.contains(inputSymbol)){
+            TransitionKey key = new TransitionKey(fromId,inputSymbol);
+            transitionFunction.put(key,toId);
+        }
+        else throw new InvalidTransitionException();
+    }
+
+    // Getters
     public Integer getCurrentState() {
         return this.currentState;
     }
     public int getSize(){
-        return size;
+        return states.size();
     }
 
     /*
         Enumerate the machine
      */
+    @Override
     public String toString(){
         StringBuffer buf = new StringBuffer();
         // TODO: This
