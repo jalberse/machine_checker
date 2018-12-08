@@ -21,6 +21,8 @@ public class DFA {
     private HashSet<Integer> acceptingStates; // F
     private Integer currentState;
 
+    private String description;
+
     /*
         Creates a DFA with no states or transition
      */
@@ -30,6 +32,7 @@ public class DFA {
         this.transitionFunction = new HashMap<>();
         this.acceptingStates = new HashSet<>();
         this.currentState = 0;
+        this.description = "";
     }
 
     /*
@@ -99,7 +102,6 @@ public class DFA {
     @Override
     public String toString(){
         StringBuffer buf = new StringBuffer();
-        // TODO: This
         return buf.toString();
     }
 }
