@@ -67,24 +67,7 @@ public class DFA {
         states.add(state);
     }
 
-
-    /*
-        Adds a transition from the given state to the target state specified by the transition.
-        If the target state is not already a state in the machine, it is added.
-
-        @param state the state to add a transition from
-        @param transition the transition from the state to another
-     */
-    public void addTransition(State fromState, Transition transition) {
-        if (!states.contains(transition.getNewState())) {
-            // If the state is not already in the machine, add it
-            this.addState(transition.getNewState());
-        }
-        // Associate the transition with fromState
-        fromState.addTransition(transition);
-    }
-
-    // TODO: Add and remove states and transitions
+    // TODO: Add and remove states
 
     // Getters
     public State getStartState() {
