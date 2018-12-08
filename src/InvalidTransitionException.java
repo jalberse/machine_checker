@@ -1,4 +1,4 @@
-public class InvalidTransitionException extends Exception {
+public class InvalidTransitionException extends TransitionException {
     public InvalidTransitionException(){
         super();
     }

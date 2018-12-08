@@ -14,12 +14,12 @@ import java.util.HashSet;
     @date 12/7/2018
  */
 public class DFA {
-    final private int START_STATE = 0;
+    final private Integer START_STATE = 0;
     private HashSet<Integer> states;
     private HashSet<Character> inputAlphabet;
     private HashMap<TransitionKey,Integer> transitionFunction; // T, Maps (Q x A) -> Q
     private HashSet<Integer> acceptingStates; // F
-    private int currentState;
+    private Integer currentState;
 
     /*
         Creates a DFA with no states or transition
@@ -40,12 +40,12 @@ public class DFA {
     //}
 
     /*
-        Execute one step of the DFA, i.e. read the inputSymbol and change state accordingly
-
+        Execute one step of the DFA, i.e. read the inputSymbol and change current state accordingly
         @param inputSymbol the input symbol. New state is determined by T(currentState, inputSymbol)
      */
-    public void readSymbol(Character inputSymbol) throws NoSuchTransitionException{
-
+    public void readSymbol(Character inputSymbol) throws NoSuchTransitionException {
+        currentState = transitionFunction.get(new TransitionKey(currentState,inputSymbol));
+        if (currentState == null) throw new NoSuchTransitionException();
     }
 
     /*
@@ -69,6 +69,14 @@ public class DFA {
         if (isAccepting) acceptingStates.add(id);
     }
 
+    /*
+        Adds a transition between two states on an input symbol. If either of the states does not exist, or if
+        the input symbol is not an element of the input alphabet, an exception is thrown
+
+        @param fromId Origin of transition
+        @param toId the state after the transition
+        @param inputSymbol the input symbol
+     */
     public void addTransition(Integer fromId, Integer toId, Character inputSymbol) throws InvalidTransitionException {
         if (states.contains(fromId) && states.contains(toId) && inputAlphabet.contains(inputSymbol)){
             TransitionKey key = new TransitionKey(fromId,inputSymbol);

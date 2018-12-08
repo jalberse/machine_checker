@@ -1,4 +1,4 @@
-public class NoSuchTransitionException extends Exception {
+public class NoSuchTransitionException extends TransitionException {
     public NoSuchTransitionException(){
         super();
     }
