@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Iterator;
 
 /*
     A deterministic finite automata
@@ -17,7 +18,6 @@ public class DFA {
     private State startState;
     private State currentState;
     private HashSet<State> states;
-    int size; // the number of states
 
     /*
         Creates a DFA with no states or transitions
@@ -26,7 +26,6 @@ public class DFA {
         this.startState = null;
         this.currentState = null;
         this.states = new HashSet<State>();
-        this.size = 0;
     }
 
     /*
@@ -39,9 +38,8 @@ public class DFA {
         this.startState = startState;
         this.currentState = startState;
         this.states = states;
-        size = states.size();
     }
-    
+
     /*
         Execute one step of the DFA, i.e. read the inputSymbol and change state accordingly
 
@@ -66,7 +64,7 @@ public class DFA {
             startState = state;
             currentState = state;
         }
-        if (states.add(state)) ++size; // add the state and increment size if succesful
+        states.add(state);
     }
 
 
@@ -95,6 +93,9 @@ public class DFA {
     public State getCurrentState() {
         return this.currentState;
     }
+    public int getSize(){
+        return states.size();
+    }
 
     // Setters
     public void setStartState(State state) {
@@ -104,5 +105,19 @@ public class DFA {
         this.currentState = state;
     }
 
-    // TODO: Print and toString
+    /*
+        Enumerate the machine
+     */
+    public String toString(){
+        StringBuffer buf = new StringBuffer();
+        buf.append(String.format("Start state: %d%n",startState.getId()));
+        buf.append(String.format("Current state: %d%n",currentState.getId()));
+        buf.append(String.format("Size: %d%nSTATES%n",states.size()));
+        Iterator<State> it = states.iterator();
+        while(it.hasNext()){
+            State temp = it.next();
+            buf.append(temp.toString());
+        }
+        return buf.toString();
+    }
 }

@@ -53,10 +53,10 @@ public class State {
      */
     public String toString() {
         StringBuffer buf = new StringBuffer();
-        buf.append(String.format("State Summary%nid: %d%n",this.id));
+        buf.append(String.format("STATE SUMMARY%nid: %d%n",this.id));
         buf.append(String.format("Accepting: %b%n",this.accepting));
         buf.append(String.format("Transitions:%n"));
-        transitions.forEach((k,v) -> buf.append(String.format("(q%d,%s) -> q%d",this.id,k,v.getNewState().id)));
+        transitions.forEach((k,v) -> buf.append(String.format("(q%d,%s) -> q%d%n",this.id,k,v.getNewState().id)));
         return buf.toString();
     }
 }
