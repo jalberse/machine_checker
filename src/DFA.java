@@ -102,6 +102,15 @@ public class DFA {
     @Override
     public String toString(){
         StringBuffer buf = new StringBuffer();
+        buf.append(String.format("DFA%n$s%n",description));
+        buf.append(String.format("Set of States Q: %s%n",states.toString()));
+        buf.append(String.format("Input Alphabet A: %s%n",inputAlphabet.toString()));
+        buf.append(String.format("Transition Function T:%n"));
+        transitionFunction.forEach((key,toState) ->
+                buf.append(String.format("(q%d,%c) -> q%d%n",key.getState(),key.getInputSymbol(),toState)));
+        buf.append(String.format("Accepting States F: %s%n",acceptingStates.toString()));
+        buf.append(String.format("Size: %d%n",getSize()));
+        buf.append(String.format("Current state: q%d%n",currentState));
         return buf.toString();
     }
 }
