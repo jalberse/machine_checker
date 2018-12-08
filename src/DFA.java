@@ -66,9 +66,9 @@ public class DFA {
         @param transition the transition from the state to another
      */
     public void addTransition(State fromState, Transition transition) {
-        if (!states.contains(transition.getResult())) {
+        if (!states.contains(transition.getNewState())) {
             // If the state is not already in the machine, add it
-            this.addState(transition.getResult());
+            this.addState(transition.getNewState());
         }
         // Associate the transition with fromState
         fromState.addTransition(transition);

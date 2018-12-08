@@ -8,19 +8,19 @@ import java.util.HashMap;
 */
 public class State {
     private int id; // Unique identifier for the state
-    private HashMap<String,Transition> transitions; // Transitions from this state to another. Key is input symbol
+    private HashMap<Character,Transition> transitions; // Transitions from this state to another. Key is input symbol
     private boolean accepting; // True if element of set of accepting states
 
     public State() {
         this.id = 0;
         this.accepting = false;
-        this.transitions = new HashMap<String,Transition>();
+        this.transitions = new HashMap<Character,Transition>();
     }
 
     public State(int id) {
         this.id = id;
         this.accepting = false;
-        this.transitions = new HashMap<String,Transition>();
+        this.transitions = new HashMap<Character,Transition>();
     }
 
     /*
@@ -39,8 +39,8 @@ public class State {
     @return the resultant state of the transition function for the given input symbol on this state
             NULL if there is no transition specified for that input symbol
      */
-    public State getNextState(String inputSymbol) {
-        return transitions.get(inputSymbol).getResult();
+    public State getNextState(Character inputSymbol) {
+        return transitions.get(inputSymbol).getNewState();
     }
 
     public int getId() { return id; }
@@ -54,7 +54,7 @@ public class State {
         buf.append(String.format("State Summary%nid: %d%n",this.id));
         buf.append(String.format("Accepting: %b%n",this.accepting));
         buf.append(String.format("Transitions:%n"));
-        transitions.forEach((k,v) -> buf.append(String.format("(q%d,%s) -> q%d",this.id,k,v.getResult().id)));
+        transitions.forEach((k,v) -> buf.append(String.format("(q%d,%s) -> q%d",this.id,k,v.getNewState().id)));
         return buf.toString();
     }
 }

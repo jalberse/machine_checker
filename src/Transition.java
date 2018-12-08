@@ -2,24 +2,24 @@
     Unidirectional edge belonging to one State, which indicates which state the machine is sent to on input symbol
  */
 public class Transition {
-    private String inputSymbol;
-    private State result; // state sent to
+    private Character inputSymbol;
+    private State newState; // state sent to
 
     public Transition(){
         this.inputSymbol = null;
-        this.result = null;
+        this.newState = null;
     }
 
-    public Transition(String inputSymbol, State result) {
+    public Transition(Character inputSymbol, State newState) {
         this.inputSymbol = inputSymbol;
-        this.result = result;
+        this.newState = newState;
     }
 
-    public String getInputSymbol(){
+    public Character getInputSymbol(){
         return inputSymbol;
     }
 
-    public State getResult(){
-        return result;
+    public State getNewState(){
+        return newState;
     }
 }
