@@ -1,29 +1,35 @@
+import java.util.HashMap;
 import java.util.HashSet;
 
 /*
-    A deterministic finite automata
+    A deterministic finite automata, with an emphasis on implementation reflecting mathematical model of a 5-tuple DFA
     M = (Q, A, T, q0, F) where:
         Q is the set of states
-        A is the input alphabet, and is implicitly defined as all input symbols part of transitions added to the machine
-        T is the transition function T: (Q x A) -> Q. Transitions are associated with each state and sent to other
-            states on reading an input symbol
+        A is the input alphabet
+        T is the transition function T: (Q x A) -> Q
         q0 is the initial state
-        F is the set of accepting states. Implicitly defined by having each state track whether or not they accept
+        F is the set of accepting states
 
     @author John Alberse
     @date 12/7/2018
  */
 public class DFA {
-    final private int startState = 0;
-    private int size;
+    final private int START_STATE = 0;
+    private HashSet<Integer> states;
+    private HashSet<Character> inputAlphabet;
+    private HashMap<Integer,HashMap<Character,Integer>> transitionFunction; // T, Maps (Q x A) -> Q
+    private HashSet<Integer> acceptingStates; // F
     private int currentState;
-    private HashSet<Integer> acceptingStates;
 
     /*
-        Creates a DFA with no states or transitions
+        Creates a DFA with no states or transition
      */
     public DFA(){
-        // TODO: This
+        this.states = new HashSet<Integer>();
+        this.inputAlphabet = new HashSet<Character>();
+        this.transitionFunction = new HashMap<>();
+        this.acceptingStates = new HashSet<>();
+        this.currentState = 0;
     }
 
 
