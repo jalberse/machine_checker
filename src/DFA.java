@@ -45,6 +45,20 @@ public class DFA {
     // TODO: Function to read an input symbol and advance
 
     /*
+        Execute one step of the DFA, i.e. read the inputSymbol and change state accordingly
+
+        @param inputSymbol the input symbol. New state is determined by T(currentState, inputSymbol)
+     */
+    public void readSymbol(Character inputSymbol) throws NoSuchTransitionException{
+        currentState = currentState.getNextState(inputSymbol);
+        if (currentState == null) {
+            // There is no transition for this symbol on this state
+            // i.e. the word is NOT an element of L(M)
+            throw new NoSuchTransitionException(String.format("No such transition for %c on q%d%n",inputSymbol,currentState.getId()));
+        }
+    }
+
+    /*
         Adds the state to the machine. If this is the first state added to the machine, it is set as the starting state
         and the current state.
         If there is already a state in the machine with the same ID, it is replaced.

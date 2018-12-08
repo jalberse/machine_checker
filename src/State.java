@@ -40,7 +40,9 @@ public class State {
             NULL if there is no transition specified for that input symbol
      */
     public State getNextState(Character inputSymbol) {
-        return transitions.get(inputSymbol).getNewState();
+        Transition temp = transitions.get(inputSymbol);
+        if (temp == null) return null; // no transition for the input symbol
+        return temp.getNewState();
     }
 
     public int getId() { return id; }
