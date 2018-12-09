@@ -55,7 +55,7 @@ public class DFA {
         Defines the input alphabet as all characters present in the string. Overwrites existing inputAlphabet if any.
         @param alpha The string containing the new alphabet, e.g. ab01 if the alphabet is (a,b,0,1)
      */
-    public void defineInputAlphabet(String alpha) {
+    public void setInputAlphabet(String alpha) {
         inputAlphabet.clear();
         for (int i = 0; i < alpha.length(); ++i){
             inputAlphabet.add(alpha.charAt(i));
