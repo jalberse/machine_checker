@@ -1,4 +1,4 @@
-public class TransitionKey {
+public class TransitionKey implements Comparable<TransitionKey> {
     private int state;
     private char inputSymbol;
 
@@ -22,6 +22,14 @@ public class TransitionKey {
         if (this.state !=((TransitionKey) O).getState()) return false;
         if (this.inputSymbol != ((TransitionKey) O).getInputSymbol()) return false;
         return true;
+    }
+
+    public int compareTo(TransitionKey O){
+        if (this.state < O.state) return -1;
+        if (this.state > O.state) return 1;
+        if (this.inputSymbol < O.inputSymbol) return -1;
+        if (this.inputSymbol > O.inputSymbol) return 1;
+        return 0;
     }
 
     @Override

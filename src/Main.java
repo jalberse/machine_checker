@@ -5,6 +5,14 @@ public class Main {
         dfa.setInputAlphabet("abc");
         dfa.addState(0,false);
         dfa.addState(1,true);
+        try {
+            dfa.addTransition(0,1,'a');
+            dfa.addTransition(0,1,'b');
+            dfa.addTransition(0,1,'c');
+            dfa.addTransition(1,0,'a');
+            dfa.addTransition(1,0,'b');
+            dfa.addTransition(1,0,'c');
+        } catch (InvalidTransitionException e) { System.out.println("Invalid transition"); }
         System.out.println(dfa);
     }
 }

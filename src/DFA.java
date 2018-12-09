@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 /*
     A deterministic finite automata, with an emphasis on implementation reflecting mathematical model of a 5-tuple DFA
@@ -110,8 +109,12 @@ public class DFA {
         buf.append(String.format("Set of States Q: %s%n",states.toString()));
         buf.append(String.format("Input Alphabet A: %s%n",inputAlphabet.toString()));
         buf.append(String.format("Transition Function T:%n"));
-        transitionFunction.forEach((key,toState) ->
-                buf.append(String.format("(q%d,%c) -> q%d%n",key.getState(),key.getInputSymbol(),toState)));
+
+        ArrayList<TransitionKey> keys = new ArrayList<>(transitionFunction.keySet());
+        Collections.sort(keys);
+        keys.forEach((key) -> buf.append(String.format("(q%d,%c) -> q%d%n",
+                key.getState(),key.getInputSymbol(),transitionFunction.get(key))));
+
         buf.append(String.format("Accepting States F: %s%n",acceptingStates.toString()));
         buf.append(String.format("Size: %d%n",getSize()));
         buf.append(String.format("Current state: q%d%n",currentState));
