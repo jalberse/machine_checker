@@ -40,13 +40,19 @@ machine_checker [word] [Y/N]
 
 ### TODO
 
-- Test machine construction (simple and dynamic)
-- Define .csv format
-- UML class/sequence diagrams
-- ...
-- Let user define the .csv file as an optional parameter
-- Run against a batch of examples/counter-examples
+- Make a trello board
+- Unit tests for machine construction
+- Construct DFA from file
+	- Define .csv format
+	- New DFA constructor
+	- Let user define the .csv file as an optional parameter
+- Run against a batch of examples/counter-examples to determine correctness
+	- User classification of examples
+	- Batch == store examples/read from file, I think
+- Equivalence testing with RegEx
+- Equivalence testing with other DFAs
 - Graphical interface
+- Context free grammars and deterministic pushdown automata?
 
 ### Further development
 
