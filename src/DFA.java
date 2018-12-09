@@ -88,6 +88,10 @@ public class DFA {
         else throw new InvalidTransitionException();
     }
 
+    public void setDescription(String description){
+        this.description = description;
+    }
+
     // Getters
     public Integer getCurrentState() {
         return this.currentState;
