@@ -14,5 +14,10 @@ public class Main {
             dfa.addTransition(1,0,'c');
         } catch (InvalidTransitionException e) { System.out.println("Invalid transition"); }
         System.out.println(dfa);
+
+        try {
+            System.out.println("Contains ababca?");
+            System.out.println(dfa.run("ababca")); // should reject
+        } catch (NoSuchTransitionException e) { System.out.println("No such transition error"); }
     }
 }

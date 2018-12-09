@@ -41,11 +41,28 @@ public class DFA {
         // TODO
     //}
 
+    // TODO: Improve error handling; transition errors should say WHY (missing state, symbol?)
+    /*
+        Runs the machine on a word
+
+        @param word The word to run the machine on
+        @return true if word is an element of L(M)
+                false if the word is not an element of L(M)
+     */
+    public boolean run(String word) throws NoSuchTransitionException {
+        for (int i = 0; i < word.length(); ++i){
+            try {
+                readSymbol(word.charAt(i));
+            } catch (NoSuchTransitionException e) { throw e; }
+        }
+        return acceptingStates.contains(currentState);
+    }
+
     /*
         Execute one step of the DFA, i.e. read the inputSymbol and change current state accordingly
         @param inputSymbol the input symbol. New state is determined by T(currentState, inputSymbol)
      */
-    public void readSymbol(Character inputSymbol) throws NoSuchTransitionException {
+    private void readSymbol(Character inputSymbol) throws NoSuchTransitionException {
         currentState = transitionFunction.get(new TransitionKey(currentState,inputSymbol));
         if (currentState == null) throw new NoSuchTransitionException();
     }
