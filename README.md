@@ -43,9 +43,10 @@ machine_checker [word] [Y/N]
 - Make a trello board
 - Unit tests for machine construction
 - Construct DFA from file
-	- Define .csv format
+	- Define input file format
 	- New DFA constructor
-	- Let user define the .csv file as an optional parameter
+	- Let user define the input file as an optional 
+parameter
 - Run against a batch of examples/counter-examples to determine correctness
 	- User classification of examples
 	- Batch == store examples/read from file, I think
