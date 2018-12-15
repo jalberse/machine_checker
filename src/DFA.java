@@ -1,4 +1,7 @@
 import java.util.*;
+import java.io.*;
+
+import static java.lang.Integer.parseInt;
 
 /*
     A deterministic finite automata, with an emphasis on implementation reflecting mathematical model of a 5-tuple DFA
@@ -13,7 +16,7 @@ import java.util.*;
     @date 12/7/2018
  */
 public class DFA {
-    final private Integer START_STATE = 0;
+    private Integer start_state;
     private HashSet<Integer> states;
     private HashSet<Character> inputAlphabet;
     private HashMap<TransitionKey,Integer> transitionFunction; // T, Maps (Q x A) -> Q
@@ -30,6 +33,7 @@ public class DFA {
         this.inputAlphabet = new HashSet<Character>();
         this.transitionFunction = new HashMap<>();
         this.acceptingStates = new HashSet<>();
+        this.start_state = 0;
         this.currentState = 0;
         this.description = "";
     }
@@ -37,9 +41,50 @@ public class DFA {
     /*
         Constructs a DFA from the file specified
      */
-    //public DFA(String filename) {
-        // TODO
-    //}
+    public DFA(String filename) {
+        try {
+            FileReader fr = new FileReader(filename);
+            BufferedReader br = new BufferedReader(fr);
+            // Description
+            this.description = br.readLine();
+            // Set of states
+            int numStates = parseInt(br.readLine());
+            for (int i = 0; i < numStates; ++i){
+                this.states.add(i);
+            }
+            // Alphabet
+            char[] alpha = br.readLine().toCharArray();
+            for (char c : alpha){
+                this.inputAlphabet.add(c);
+            }
+            // Accepting states
+            String[] acceptingStates = br.readLine().split(",");
+            for (String s : acceptingStates){
+                this.acceptingStates.add(parseInt(s));
+            }
+            // Start state
+            this.start_state = parseInt(br.readLine());
+            this.currentState = this.start_state;
+            // Transition function
+            String trans;
+            while ((trans = br.readLine()) != null){
+                String[] rule = trans.split(",");
+                transitionFunction.put(new TransitionKey(parseInt(rule[0]),rule[1].charAt(0)),parseInt(rule[2]));
+            }
+
+            br.close();
+        }
+        catch(FileNotFoundException e) {
+            System.err.println("Unable to open file " + filename);
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        catch(NumberFormatException e) {
+            System.err.println("Improperly formatted file");
+        }
+
+    }
 
     // TODO: Improve error handling; transition errors should say WHY (missing state, symbol?)
     /*
