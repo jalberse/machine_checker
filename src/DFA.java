@@ -45,19 +45,23 @@ public class DFA {
         try {
             FileReader fr = new FileReader(filename);
             BufferedReader br = new BufferedReader(fr);
+
             // Description
             this.description = br.readLine();
             // Set of states
+            this.states = new HashSet<Integer>();
             int numStates = parseInt(br.readLine());
             for (int i = 0; i < numStates; ++i){
                 this.states.add(i);
             }
             // Alphabet
+            this.inputAlphabet = new HashSet<Character>();
             char[] alpha = br.readLine().toCharArray();
             for (char c : alpha){
                 this.inputAlphabet.add(c);
             }
             // Accepting states
+            this.acceptingStates = new HashSet<>();
             String[] acceptingStates = br.readLine().split(",");
             for (String s : acceptingStates){
                 this.acceptingStates.add(parseInt(s));
@@ -66,6 +70,7 @@ public class DFA {
             this.start_state = parseInt(br.readLine());
             this.currentState = this.start_state;
             // Transition function
+            this.transitionFunction = new HashMap<>();
             String trans;
             while ((trans = br.readLine()) != null){
                 String[] rule = trans.split(",");
@@ -95,6 +100,7 @@ public class DFA {
                 false if the word is not an element of L(M)
      */
     public boolean run(String word) throws NoSuchTransitionException {
+        this.currentState = start_state;
         for (int i = 0; i < word.length(); ++i){
             try {
                 readSymbol(word.charAt(i));
