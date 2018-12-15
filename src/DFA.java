@@ -4,7 +4,7 @@ import java.io.*;
 import static java.lang.Integer.parseInt;
 
 /*
-    A deterministic finite automata, with an emphasis on implementation reflecting mathematical model of a 5-tuple DFA
+    A deterministic finite automaton, with an emphasis on implementation reflecting mathematical model of a 5-tuple DFA
     M = (Q, A, T, q0, F) where:
         Q is the set of states
         A is the input alphabet
