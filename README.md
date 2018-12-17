@@ -15,28 +15,9 @@ It is trivial to construct examples and counter-examples of words for L,
 so students may use this program and examples they come up with to 
 ensure the correctness of their DFA, or to aide in its design. 
 
-Given a deterministic finite automata M, an input string w, and
-classification X (YES w is in L or NO w is NOT in L), determine whether 
-M correctly classifies w. That is, if we run M on w, does the output 
-match X? 
-
 Note that his program does NOT mathematically verify that L(M) = L. This 
 problem is non-trivial. This program only verifies that a DFA M, given 
 w, does or does not match the classification of w provided by the user. 
-
-### Usage
-
-#### 1. Construct the DFA
-
-The DFA M is defined by the user in the machine.csv file, which has the 
-following format:
-
-!! TODO WRITE THE FORMAT HERE !!
-
-#### 2. Command line usage
-
-// TODO: correct this
-machine_checker [word] [Y/N]
 
 ### TODO
 
