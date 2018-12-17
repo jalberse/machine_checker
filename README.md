@@ -19,23 +19,6 @@ Note that his program does NOT mathematically verify that L(M) = L. This
 problem is non-trivial. This program only verifies that a DFA M, given 
 w, does or does not match the classification of w provided by the user. 
 
-### TODO
-
-- Make a trello board
-- Unit tests for machine construction
-- Construct DFA from file
-	- Define input file format
-	- New DFA constructor
-	- Let user define the input file as an optional 
-parameter
-- Run against a batch of examples/counter-examples to determine correctness
-	- User classification of examples
-	- Batch == store examples/read from file, I think
-- Equivalence testing with RegEx
-- Equivalence testing with other DFAs
-- Graphical interface
-- Context free grammars and deterministic pushdown automata?
-
 ### Further development
 
 #### Equivalence with Regular Expressions and other DFAs 
