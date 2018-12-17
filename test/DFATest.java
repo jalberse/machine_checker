@@ -1,36 +1,46 @@
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 public class DFATest {
+    private DFA dfa0;
 
-    @org.testng.annotations.Test
-    public void testRun() {
+    @BeforeTest
+    public void setUp() {
+        
     }
 
-    @org.testng.annotations.Test
+    @Test
+    public void testRun() {
+
+    }
+
+    @Test
     public void testSetInputAlphabet() {
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testAddState() {
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testAddTransition() {
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testSetDescription() {
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testGetCurrentState() {
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testGetSize() {
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testToString() {
     }
 }

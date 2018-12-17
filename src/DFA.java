@@ -40,30 +40,33 @@ public class DFA {
 
     /*
         Constructs a DFA from the file specified
+
+        @param filename The file containing the DFA. See README for format.
      */
     public DFA(String filename) {
+        BufferedReader br = null;
         try {
             FileReader fr = new FileReader(filename);
-            BufferedReader br = new BufferedReader(fr);
+            br = new BufferedReader(fr);
 
             // Description
             this.description = br.readLine();
             // Set of states
             this.states = new HashSet<Integer>();
             int numStates = parseInt(br.readLine());
-            for (int i = 0; i < numStates; ++i){
+            for (int i = 0; i < numStates; ++i) {
                 this.states.add(i);
             }
             // Alphabet
             this.inputAlphabet = new HashSet<Character>();
             char[] alpha = br.readLine().toCharArray();
-            for (char c : alpha){
+            for (char c : alpha) {
                 this.inputAlphabet.add(c);
             }
             // Accepting states
             this.acceptingStates = new HashSet<>();
             String[] acceptingStates = br.readLine().split(",");
-            for (String s : acceptingStates){
+            for (String s : acceptingStates) {
                 this.acceptingStates.add(parseInt(s));
             }
             // Start state
@@ -72,21 +75,27 @@ public class DFA {
             // Transition function
             this.transitionFunction = new HashMap<>();
             String trans;
-            while ((trans = br.readLine()) != null){
+            while ((trans = br.readLine()) != null) {
                 String[] rule = trans.split(",");
-                transitionFunction.put(new TransitionKey(parseInt(rule[0]),rule[1].charAt(0)),parseInt(rule[2]));
+                transitionFunction.put(new TransitionKey(parseInt(rule[0]), rule[1].charAt(0)), parseInt(rule[2]));
             }
 
             br.close();
-        }
-        catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.err.println("Unable to open file " + filename);
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.err.println("Improperly formatted file");
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                }
+                catch (IOException e){
+                    System.err.println(e);
+                }
+            }
         }
 
     }
