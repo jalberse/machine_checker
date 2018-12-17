@@ -108,12 +108,12 @@ public class DFA {
         @return true if word is an element of L(M)
                 false if the word is not an element of L(M)
      */
-    public boolean run(String word) throws NoSuchTransitionException {
+    public boolean run(String word) {
         this.currentState = start_state;
         for (int i = 0; i < word.length(); ++i){
             try {
                 readSymbol(word.charAt(i));
-            } catch (NoSuchTransitionException e) { throw e; }
+            } catch (NoSuchTransitionException e) { System.err.println(e); }
         }
         return acceptingStates.contains(currentState);
     }
