@@ -175,10 +175,28 @@ public class DFA {
     public int getSize(){
         return states.size();
     }
+    public HashSet<Character> getInputAlphabet() {
+        return inputAlphabet;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public HashSet<Integer> getAcceptingStates() {
+        return acceptingStates;
+    }
+    public HashSet<Integer> getStates() {
+        return states;
+    }
+    public Integer getStart_state() {
+        return start_state;
+    }
+    public HashMap<TransitionKey, Integer> getTransitionFunction() {
+        return transitionFunction;
+    }
 
     /*
-        Enumerate the machine
-     */
+                                Enumerate the machine
+                             */
     @Override
     public String toString(){
         StringBuffer buf = new StringBuffer();
