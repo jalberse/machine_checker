@@ -3,7 +3,12 @@ import java.awt.*;
 
 public class MainFrame extends JFrame{
 
+    // TODO: Word input under display
+    private final int WIDTH = 600;
+    private final int HEIGHT = 400;
+
     private EditorPanel editor;
+    private JScrollPane editorScrollPane;
     private DisplayPanel display;
 
     public MainFrame() {
@@ -12,12 +17,13 @@ public class MainFrame extends JFrame{
         setLayout(new BorderLayout());
 
         editor = new EditorPanel();
+        editorScrollPane = new JScrollPane(editor);
         display = new DisplayPanel();
 
-        add(editor,BorderLayout.WEST);
+        add(editorScrollPane,BorderLayout.LINE_START);
         add(display,BorderLayout.CENTER);
 
-        setSize(600,400);
+        setSize(WIDTH,WIDTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
