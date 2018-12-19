@@ -10,7 +10,7 @@ public class EditorPanel extends JPanel {
     private LabelledSpinner numberOfStatesSpinner;
     private LabelledTextField inputAlphabetField;
     // TODO: Array of transition function panels which have 3 components for inputs and outputs?
-    private ArrayList<JCheckBox> acceptingStates;
+    private LabelledChecklist acceptingStates;
     private JButton updateMachineButton;
 
     public EditorPanel(){
@@ -19,16 +19,13 @@ public class EditorPanel extends JPanel {
         descriptionArea = new LabelledTextArea("Description");
         numberOfStatesSpinner = new LabelledSpinner("Number of States");
         inputAlphabetField = new LabelledTextField("Input Alphabet");
-        acceptingStates = new ArrayList<>();
-        acceptingStates.add(new JCheckBox("0"));
+        acceptingStates = new LabelledChecklist("Accepting States");
         updateMachineButton = new JButton("Update Machine");
 
         add(descriptionArea);
         add(numberOfStatesSpinner);
         add(inputAlphabetField);
-        for (int i = 0; i < acceptingStates.size(); ++i){
-            add(acceptingStates.get(i));
-        }
+        add(acceptingStates);
         add(updateMachineButton);
     }
 }
