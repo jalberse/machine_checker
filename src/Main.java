@@ -6,10 +6,7 @@ public class Main {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                JFrame frame = new JFrame("Automata");
-                frame.setSize(600,500);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setVisible(true);
+                MainFrame frame = new MainFrame();
             }
         });
 
