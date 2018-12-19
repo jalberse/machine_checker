@@ -30,33 +30,7 @@ public class DFATest {
         Assert.assertFalse(dfa0.run("abbbb"));
     }
 
-    @Test
-    public void testSetInputAlphabet() {
-    }
-
-    @Test
-    public void testAddState() {
-    }
-
-    @Test
-    public void testAddTransition() {
-    }
-
-    @Test
-    public void testSetDescription() {
-    }
-
-    @Test
-    public void testGetCurrentState() {
-    }
-
-    @Test
-    public void testGetSize() {
-    }
-
-    @Test
-    public void testToString() {
-    }
+    // Add more as needed
 
     @AfterMethod
     public void tearDown() {
