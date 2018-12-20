@@ -5,6 +5,7 @@ public class LabelledSpinner extends JPanel{
     private final JLabel label;
     private final JSpinner spinner;
 
+    // TODO: Constructor should specify content of spinner (for non integers)
     public LabelledSpinner(String label){
         this.label = new JLabel(label);
         spinner = new JSpinner();
