@@ -9,6 +9,7 @@ public class DisplayPanel extends JPanel {
     public DisplayPanel(){
         setLayout(new BorderLayout());
         display = new JTextArea();
+        display.setEditable(false);
         add(display,BorderLayout.CENTER);
     }
 }
