@@ -72,7 +72,7 @@ public class EditorPanel extends JPanel {
         statesHeader.add(statesLabel,BorderLayout.CENTER);
         statesHeader.add(addStateButton,BorderLayout.LINE_END);
         states = new ArrayList<>();
-        states.add(new StatePanel());
+        states.add(new StatePanel(0));
         statesPanel.add(statesHeader);
         statesPanel.add(states.get(0));
         gbc.gridy = 3;
