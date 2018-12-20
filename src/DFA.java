@@ -1,3 +1,5 @@
+import org.codehaus.groovy.util.HashCodeHelper;
+
 import java.util.*;
 import java.io.*;
 
@@ -99,6 +101,35 @@ public class DFA {
         }
 
     }
+
+    /*
+        Removes unreachable states from the DFA. The first step in minimizing the DFA.
+     */
+    public void removeUnreachableStates(){
+        // TODO: Create sets of neighbors for each state
+
+        // TODO: Find unreachable states
+        HashSet<Integer> reachableStates = new HashSet<>();
+        reachableStates.add(0);
+        HashSet<Integer> newStates = new HashSet<>();
+        newStates.add(0);
+        HashSet<Integer> temp = new HashSet<>();
+        Iterator<Integer> itState;
+        Iterator<Character> itAlpha;
+        do {
+            temp.clear();
+            itState = newStates.iterator();
+            while (itState.hasNext()){
+                itAlpha = inputAlphabet.iterator();
+                while (itAlpha.hasNext()){
+
+                }
+            }
+        } while (newStates.size() != 0);
+
+        // TODO: Remove unreachable states
+    }
+
 
     // TODO: Improve error handling; transition errors should say WHY (missing state, symbol?)
     /*
