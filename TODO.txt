@@ -6,11 +6,17 @@ construction
 - GUI
 	- Finish laying out editor 
 pane
+		- Finish StatePanel and 
+TransitionPanel
+	- Make add/minus buttons in GUI 
+add/subtract states/transitions from the 
+editor
 	- I want to be able to input 
 a DFA in the editor pane and click the 
 "update machine" button and have the 
 DFA 
 print to the display pane.
+	- Validate input in editor
 	- Word input to test machine
 		- Batch eventually
 	- Graphical display, not just 

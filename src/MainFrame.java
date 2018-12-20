@@ -1,11 +1,13 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class MainFrame extends JFrame{
 
     // TODO: Word input under display
-    private final int WIDTH = 600;
-    private final int HEIGHT = 400;
+    // TODO: Menu bar (for saving and loading machines)
+    public static final int WIDTH = 900;
+    public static final int HEIGHT = 600;
 
     private EditorPanel editor;
     private JScrollPane editorScrollPane;
@@ -17,10 +19,9 @@ public class MainFrame extends JFrame{
         setLayout(new BorderLayout());
 
         editor = new EditorPanel();
-        editorScrollPane = new JScrollPane(editor);
         display = new DisplayPanel();
 
-        add(editorScrollPane,BorderLayout.LINE_START);
+        add(editor,BorderLayout.LINE_START);
         add(display,BorderLayout.CENTER);
 
         setSize(WIDTH,HEIGHT);
