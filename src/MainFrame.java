@@ -23,7 +23,7 @@ public class MainFrame extends JFrame{
         add(editorScrollPane,BorderLayout.LINE_START);
         add(display,BorderLayout.CENTER);
 
-        setSize(WIDTH,WIDTH);
+        setSize(WIDTH,HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
