@@ -6,11 +6,8 @@ construction
 - GUI
 	- Finish laying out editor 
 pane
-		- Finish StatePanel and 
-TransitionPanel
-	- Make add/minus buttons in GUI 
-add/subtract states/transitions from the 
-editor
+	- Set JSpinner models for transitions - only valid 
+states/characters
 	- I want to be able to input 
 a DFA in the editor pane and click the 
 "update machine" button and have the 
