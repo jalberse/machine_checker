@@ -13,5 +13,10 @@ public class TransitionPanel extends JPanel {
         // TODO: Specify valid values of these spinners
         onSpinner = new JSpinner();
         toSpinner = new JSpinner();
+
+        add(onLabel);
+        add(onSpinner);
+        add(toLabel);
+        add(toSpinner);
     }
 }

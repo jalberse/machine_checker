@@ -19,9 +19,12 @@ public class MainFrame extends JFrame{
         setLayout(new BorderLayout());
 
         editor = new EditorPanel();
+        editor.setBorder(BorderFactory.createEmptyBorder(0,20,0,20));
+        editorScrollPane = new JScrollPane(editor,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         display = new DisplayPanel();
 
-        add(editor,BorderLayout.LINE_START);
+        add(editorScrollPane,BorderLayout.LINE_START);
         add(display,BorderLayout.CENTER);
 
         setSize(WIDTH,HEIGHT);

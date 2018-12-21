@@ -28,7 +28,6 @@ public class EditorPanel extends JPanel {
     private ArrayList<StatePanel> states;
 
     public EditorPanel(){
-        this.setPreferredSize(new Dimension(MainFrame.WIDTH / 4, MainFrame.HEIGHT));
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(INSET,INSET,INSET,INSET);

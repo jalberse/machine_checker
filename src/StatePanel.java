@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class StatePanel extends JPanel {
@@ -12,6 +14,8 @@ public class StatePanel extends JPanel {
     public StatePanel(int stateID){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        transitions = new ArrayList<>();
+
         header = new JPanel();
         header.setLayout(new GridBagLayout());
         GridBagConstraints hc = new GridBagConstraints();
@@ -22,10 +26,32 @@ public class StatePanel extends JPanel {
         hc.weighty = .5;
         header.add(label,hc);
         removeTransitionButton = new JButton("-");
+        removeTransitionButton.addActionListener(e -> {
+            if (!transitions.isEmpty()){
+                transitions.remove(transitions.size()-1);
+                removeAll();
+                add(header);
+                for(TransitionPanel transition: transitions){
+                    add(transition);
+                }
+                revalidate();
+                repaint();
+            }
+        });
         hc.weighty = 0;
         hc.gridx = 1;
         header.add(removeTransitionButton,hc);
         addTransitionButton = new JButton("+");
+        addTransitionButton.addActionListener(e -> {
+            transitions.add(new TransitionPanel());
+            removeAll();
+            add(header);
+            for(TransitionPanel transition: transitions){
+                add(transition);
+            }
+            revalidate();
+            repaint();
+        });
         hc.gridx = 2;
         header.add(addTransitionButton,hc);
 
