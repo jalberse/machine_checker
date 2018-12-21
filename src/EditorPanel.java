@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class EditorPanel extends JPanel {
@@ -66,8 +68,31 @@ public class EditorPanel extends JPanel {
         statesHeader = new JPanel();
         statesHeader.setLayout(new BorderLayout());
         removeStateButton = new JButton("-");
+        removeStateButton.addActionListener(e -> {
+            if (states.size() <= 1){
+                return; // DFA always at least has one state
+            }
+            states.remove(states.size()-1);
+            statesPanel.removeAll();
+            statesPanel.add(statesHeader);
+            for (StatePanel state : states){
+                statesPanel.add(state);
+            }
+            revalidate();
+            repaint();
+        });
         statesLabel = new JLabel("States",SwingConstants.CENTER);
         addStateButton = new JButton("+");
+        addStateButton.addActionListener(e -> {
+            states.add(new StatePanel(states.size()));
+            statesPanel.removeAll();
+            statesPanel.add(statesHeader);
+            for (StatePanel state : states){
+                statesPanel.add(state);
+            }
+            revalidate();
+            repaint();
+        });
         statesHeader.add(removeStateButton,BorderLayout.LINE_START);
         statesHeader.add(statesLabel,BorderLayout.CENTER);
         statesHeader.add(addStateButton,BorderLayout.LINE_END);
