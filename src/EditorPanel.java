@@ -6,6 +6,14 @@ import java.util.ArrayList;
 
 public class EditorPanel extends JPanel {
 
+    // TODO
+        // We have a lot of things (transition JSpinners, input alphabet input, etc...)
+        // That require information about the "current" DFA inputted.
+        // Instead of having a bunch of listeners between them, let's dynamically modify a DFA
+        // Which we then read from to determine valid inputs
+        // Also, why have the updateMachineButton? Why not dynamically update the machine display after every mod?
+        // Maybe? Gonna have to try and see how it shakes out.
+
     private final int INSET = 4;
 
     // TODO: Will need tooltip and reset
