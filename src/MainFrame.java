@@ -1,37 +1,66 @@
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame implements DFAListener{
 
     // TODO: Word input under display
     // TODO: Menu bar (for saving and loading machines)
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
 
-    private EditorPanel editor;
+    private EditorPanel editorPanel;
     private JScrollPane editorScrollPane;
-    private DisplayPanel display;
+    private DisplayPanel displayPanel;
     private DFA dfa;
 
     public MainFrame() {
         super("Automata");
 
         dfa = new DFA();
+        dfa.addListener(this);
 
         setLayout(new BorderLayout());
 
-        editor = new EditorPanel();
-        editor.setBorder(BorderFactory.createEmptyBorder(0,20,0,20));
-        editorScrollPane = new JScrollPane(editor,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+        editorPanel = new EditorPanel();
+        editorPanel.setBorder(BorderFactory.createEmptyBorder(0,20,0,20));
+        editorScrollPane = new JScrollPane(editorPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        display = new DisplayPanel();
+        displayPanel = new DisplayPanel();
 
         add(editorScrollPane,BorderLayout.LINE_START);
-        add(display,BorderLayout.CENTER);
+        add(displayPanel,BorderLayout.CENTER);
+
+        displayPanel.display(dfa.toString());
 
         setSize(WIDTH,HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    // DFA has been changed - update UI accordingly
+    public void dfaUpdated(){
+        displayPanel.display(dfa.toString());
+    }
+
+    // Methods to modify DFA which editor panel can call (getParent().set*()) etc
+    public void setDescription(String description){
+        dfa.setDescription(description);
+    }
+    public void addTransition(Integer fromId, Integer toId, Character inputSymbol){
+        try {
+            dfa.addTransition(fromId,toId,inputSymbol);
+        }
+        catch (InvalidTransitionException e){
+            System.err.println("Invalid transition");
+        }
+    }
+    public void addListener(DFAListener listener){
+        dfa.addListener(listener);
+    }
+    public void addState(Integer id, boolean isAccepting){
+        dfa.addState(id,isAccepting);
+    }
+    public void setInputAlpabet(String alpha){
+        dfa.setInputAlphabet(alpha);
     }
 }

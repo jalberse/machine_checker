@@ -12,4 +12,8 @@ public class DisplayPanel extends JPanel {
         display.setEditable(false);
         add(display,BorderLayout.CENTER);
     }
+
+    public void display(String machine){
+        display.setText(machine);
+    }
 }

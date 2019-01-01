@@ -22,13 +22,15 @@ public class DFA {
     private HashMap<TransitionKey,Integer> transitionFunction; // T, Maps (Q x A) -> Q
     private HashSet<Integer> acceptingStates; // F
     private Integer currentState;
-
     private String description;
+
+    private ArrayList<DFAListener> listeners;
 
     /*
         Creates a DFA with one states, no transitions, and no accepting states
      */
     public DFA(){
+        this.listeners = new ArrayList<>();
         this.states = new HashSet<Integer>();
         states.add(0);
         this.inputAlphabet = new HashSet<Character>();
@@ -126,6 +128,9 @@ public class DFA {
     private void readSymbol(Character inputSymbol) throws NoSuchTransitionException {
         currentState = transitionFunction.get(new TransitionKey(currentState,inputSymbol));
         if (currentState == null) throw new NoSuchTransitionException();
+        for (DFAListener listener : listeners){
+            listener.dfaUpdated();
+        }
     }
 
     /*
@@ -137,6 +142,9 @@ public class DFA {
         for (int i = 0; i < alpha.length(); ++i){
             inputAlphabet.add(alpha.charAt(i));
         }
+        for (DFAListener listener : listeners){
+            listener.dfaUpdated();
+        }
     }
 
     /*
@@ -147,6 +155,9 @@ public class DFA {
     public void addState(Integer id, boolean isAccepting){
         states.add(id);
         if (isAccepting) acceptingStates.add(id);
+        for (DFAListener listener : listeners){
+            listener.dfaUpdated();
+        }
     }
 
     /*
@@ -161,18 +172,28 @@ public class DFA {
         if (states.contains(fromId) && states.contains(toId) && inputAlphabet.contains(inputSymbol)){
             TransitionKey key = new TransitionKey(fromId,inputSymbol);
             transitionFunction.put(key,toId);
+
+            for (DFAListener listener : listeners){
+                listener.dfaUpdated();
+            }
         }
         else throw new InvalidTransitionException();
     }
 
     public void setDescription(String description){
         this.description = description;
+
+        for (DFAListener listener : listeners){
+            listener.dfaUpdated();
+        }
+    }
+
+    public void addListener(DFAListener o){
+        listeners.add(o);
     }
 
     // Getters
-    public Integer getCurrentState() {
-        return this.currentState;
-    }
+    public Integer getCurrentState() { return this.currentState; }
     public int getSize(){
         return states.size();
     }
@@ -196,8 +217,8 @@ public class DFA {
     }
 
     /*
-                                Enumerate the machine
-                             */
+    Enumerate the machine
+    */
     @Override
     public String toString(){
         StringBuffer buf = new StringBuffer();

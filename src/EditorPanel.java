@@ -81,6 +81,9 @@ public class EditorPanel extends JPanel {
         statesLabel = new JLabel("States",SwingConstants.CENTER);
         addStateButton = new JButton("+");
         addStateButton.addActionListener(e -> {
+            // update data
+            ((MainFrame)getParent()).addState(states.size(),false);
+            // update gui
             states.add(new StatePanel(states.size()));
             statesPanel.removeAll();
             statesPanel.add(statesHeader);
