@@ -16,10 +16,6 @@ public class EditorPanel extends JPanel {
 
     private final int INSET = 4;
 
-    // TODO: Will need tooltip and reset
-    // TODO: InputVerifier subclass. Check for where to refactor to a formatted text field
-    private JButton updateMachineButton;
-
     private JPanel descriptionPane;
     private JLabel descriptionLabel;
     private JTextArea descriptionTextArea;
@@ -41,12 +37,6 @@ public class EditorPanel extends JPanel {
         gbc.insets = new Insets(INSET,INSET,INSET,INSET);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Update Machine button
-        updateMachineButton = new JButton("Update Machine");
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(updateMachineButton,gbc);
-
         // Description Panel
         descriptionPane = new JPanel();
         descriptionPane.setLayout(new BorderLayout());
@@ -56,7 +46,7 @@ public class EditorPanel extends JPanel {
         descriptionPane.add(descriptionLabel,BorderLayout.PAGE_START);
         descriptionPane.add(descriptionTextArea,BorderLayout.CENTER);
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
         add(descriptionPane,gbc);
 
         // Input Alphabet Panel
@@ -66,7 +56,7 @@ public class EditorPanel extends JPanel {
         alphabetPanel.setLayout(new BorderLayout());
         alphabetPanel.add(alphabetLabel,BorderLayout.PAGE_START);
         alphabetPanel.add(alphabetField,BorderLayout.CENTER);
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         add(alphabetPanel,gbc);
 
         // States Panel
@@ -107,7 +97,7 @@ public class EditorPanel extends JPanel {
         states.add(new StatePanel(0));
         statesPanel.add(statesHeader);
         statesPanel.add(states.get(0));
-        gbc.gridy = 3;
+        gbc.gridy = 2;
         add(statesPanel,gbc);
     }
 }

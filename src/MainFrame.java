@@ -12,9 +12,12 @@ public class MainFrame extends JFrame{
     private EditorPanel editor;
     private JScrollPane editorScrollPane;
     private DisplayPanel display;
+    private DFA dfa;
 
     public MainFrame() {
         super("Automata");
+
+        dfa = new DFA();
 
         setLayout(new BorderLayout());
 

@@ -26,10 +26,11 @@ public class DFA {
     private String description;
 
     /*
-        Creates a DFA with no states or transition
+        Creates a DFA with one states, no transitions, and no accepting states
      */
     public DFA(){
         this.states = new HashSet<Integer>();
+        states.add(0);
         this.inputAlphabet = new HashSet<Character>();
         this.transitionFunction = new HashMap<>();
         this.acceptingStates = new HashSet<>();
