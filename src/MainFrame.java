@@ -60,6 +60,9 @@ public class MainFrame extends JFrame implements DFAListener{
     public void addState(Integer id, boolean isAccepting){
         dfa.addState(id,isAccepting);
     }
+    public void removeState(Integer id){
+        dfa.removeState(id);
+    }
     public void setInputAlpabet(String alpha){
         dfa.setInputAlphabet(alpha);
     }

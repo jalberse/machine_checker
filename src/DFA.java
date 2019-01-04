@@ -160,6 +160,13 @@ public class DFA {
         }
     }
 
+    public void removeState(Integer id){
+        states.remove(id);
+        for (DFAListener listener : listeners){
+            listener.dfaUpdated();
+        }
+    }
+
     /*
         Adds a transition between two states on an input symbol. If either of the states does not exist, or if
         the input symbol is not an element of the input alphabet, an exception is thrown

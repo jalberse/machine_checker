@@ -69,6 +69,9 @@ public class EditorPanel extends JPanel {
             if (states.size() <= 1){
                 return; // DFA always at least has one state
             }
+            // Update data
+            ((MainFrame)SwingUtilities.windowForComponent(this)).removeState(states.size() - 1);
+            // Update gui
             states.remove(states.size()-1);
             statesPanel.removeAll();
             statesPanel.add(statesHeader);
@@ -82,7 +85,7 @@ public class EditorPanel extends JPanel {
         addStateButton = new JButton("+");
         addStateButton.addActionListener(e -> {
             // update data
-            ((MainFrame)getParent()).addState(states.size(),false);
+            ((MainFrame)SwingUtilities.windowForComponent(this)).addState(states.size(),false);
             // update gui
             states.add(new StatePanel(states.size()));
             statesPanel.removeAll();
