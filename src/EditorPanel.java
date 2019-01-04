@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -40,6 +42,23 @@ public class EditorPanel extends JPanel {
         descriptionPane.setLayout(new BorderLayout());
         descriptionLabel = new JLabel("Description");
         descriptionTextArea = new JTextArea();
+        descriptionTextArea.setLineWrap(true);
+        descriptionTextArea.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ((MainFrame)SwingUtilities.windowForComponent(descriptionTextArea)).setDescription(descriptionTextArea.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ((MainFrame)SwingUtilities.windowForComponent(descriptionTextArea)).setDescription(descriptionTextArea.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ((MainFrame)SwingUtilities.windowForComponent(descriptionTextArea)).setDescription(descriptionTextArea.getText());
+            }
+        });
         descriptionPane.add(descriptionLabel,BorderLayout.PAGE_START);
         descriptionPane.add(descriptionTextArea,BorderLayout.CENTER);
         gbc.gridx = 0;
@@ -104,6 +123,7 @@ public class EditorPanel extends JPanel {
         statesPanel.add(statesHeader);
         statesPanel.add(states.get(0));
         gbc.gridy = 2;
+
         add(statesPanel,gbc);
     }
 }

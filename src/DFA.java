@@ -230,7 +230,7 @@ public class DFA {
     @Override
     public String toString(){
         StringBuffer buf = new StringBuffer();
-        buf.append(String.format("DFA%n%s%n",description));
+        buf.append(String.format("DFA%nDescription: %s%n",description));
         buf.append(String.format("Set of States Q: %s%n",states.toString()));
         buf.append(String.format("Input Alphabet A: %s%n",inputAlphabet.toString()));
         buf.append(String.format("Transition Function T:%n"));
