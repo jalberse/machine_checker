@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class EditorPanel extends JPanel {
@@ -18,7 +16,7 @@ public class EditorPanel extends JPanel {
 
     private JPanel descriptionPane;
     private JLabel descriptionLabel;
-    private JTextArea descriptionTextArea;
+    private JTextField descriptionTextField;
 
     private JPanel alphabetPanel;
     private JLabel alphabetLabel;
@@ -41,10 +39,9 @@ public class EditorPanel extends JPanel {
         descriptionPane = new JPanel();
         descriptionPane.setLayout(new BorderLayout());
         descriptionLabel = new JLabel("Description");
-        descriptionTextArea = new JTextArea();
-        descriptionTextArea.setLineWrap(true);
+        descriptionTextField = new JTextField();
         descriptionPane.add(descriptionLabel,BorderLayout.PAGE_START);
-        descriptionPane.add(descriptionTextArea,BorderLayout.CENTER);
+        descriptionPane.add(descriptionTextField,BorderLayout.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(descriptionPane,gbc);
