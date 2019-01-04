@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashSet;
 
 public class MainFrame extends JFrame implements DFAListener{
 
@@ -39,7 +40,19 @@ public class MainFrame extends JFrame implements DFAListener{
 
     // DFA has been changed - update UI accordingly
     public void dfaUpdated(){
+        // Update display
         displayPanel.display(dfa.toString());
+        // Update transition input
+        for (Component c : editorPanel.getComponents()){
+            if (c instanceof StatePanel){
+                for (Component t : ((StatePanel) c).getComponents()){
+                    if (t instanceof TransitionPanel){
+                        // TODO: Check equivalence of input alpabet and state set. If not equal
+                        // TODO: with model's list, update. Make sure we don't lose current value if out of range tho
+                    }
+                }
+            }
+        }
     }
 
     // Methods to modify DFA which editor panel can call (getParent().set*()) etc
@@ -65,5 +78,8 @@ public class MainFrame extends JFrame implements DFAListener{
     }
     public void setInputAlpabet(String alpha){
         dfa.setInputAlphabet(alpha);
+    }
+    public HashSet<Character> getInputAlphabet(){
+        return dfa.getInputAlphabet();
     }
 }
