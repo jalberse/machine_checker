@@ -53,6 +53,9 @@ public class EditorPanel extends JPanel {
         alphabetPanel = new JPanel();
         alphabetLabel = new JLabel("Input Alphabet");
         alphabetField = new JTextField();
+        alphabetField.addActionListener(e -> {
+            ((MainFrame)SwingUtilities.windowForComponent(this)).setInputAlpabet(alphabetField.getText());
+        });
         alphabetPanel.setLayout(new BorderLayout());
         alphabetPanel.add(alphabetLabel,BorderLayout.PAGE_START);
         alphabetPanel.add(alphabetField,BorderLayout.CENTER);
