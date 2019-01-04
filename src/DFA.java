@@ -133,8 +133,17 @@ public class DFA {
         }
     }
 
+    public void setDescription(String description){
+        this.description = description;
+
+        for (DFAListener listener : listeners){
+            listener.dfaUpdated();
+        }
+    }
+
     /*
         Defines the input alphabet as all characters present in the string. Overwrites existing inputAlphabet if any.
+        Repeated characters are not added.
         @param alpha The string containing the new alphabet, e.g. ab01 if the alphabet is (a,b,0,1)
      */
     public void setInputAlphabet(String alpha) {
@@ -185,14 +194,6 @@ public class DFA {
             }
         }
         else throw new InvalidTransitionException();
-    }
-
-    public void setDescription(String description){
-        this.description = description;
-
-        for (DFAListener listener : listeners){
-            listener.dfaUpdated();
-        }
     }
 
     public void addListener(DFAListener o){

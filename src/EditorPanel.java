@@ -16,7 +16,7 @@ public class EditorPanel extends JPanel {
 
     private JPanel descriptionPane;
     private JLabel descriptionLabel;
-    private JTextField descriptionTextField;
+    private JTextArea descriptionTextArea;
 
     private JPanel alphabetPanel;
     private JLabel alphabetLabel;
@@ -39,9 +39,9 @@ public class EditorPanel extends JPanel {
         descriptionPane = new JPanel();
         descriptionPane.setLayout(new BorderLayout());
         descriptionLabel = new JLabel("Description");
-        descriptionTextField = new JTextField();
+        descriptionTextArea = new JTextArea();
         descriptionPane.add(descriptionLabel,BorderLayout.PAGE_START);
-        descriptionPane.add(descriptionTextField,BorderLayout.CENTER);
+        descriptionPane.add(descriptionTextArea,BorderLayout.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(descriptionPane,gbc);
