@@ -34,6 +34,7 @@ public class DFA {
         this.states = new HashSet<Integer>();
         states.add(0);
         this.inputAlphabet = new HashSet<Character>();
+        inputAlphabet.add('0');
         this.transitionFunction = new HashMap<>();
         this.acceptingStates = new HashSet<>();
         this.start_state = 0;
@@ -41,6 +42,8 @@ public class DFA {
         this.description = "";
     }
 
+    // TODO: Handle invalid construction.
+    // e.g. if input alpha is null, can break gui
     /*
         Constructs a DFA from the file specified
 
@@ -100,7 +103,6 @@ public class DFA {
                 }
             }
         }
-
     }
 
     // TODO: Improve error handling; transition errors should say WHY (missing state, symbol?)
