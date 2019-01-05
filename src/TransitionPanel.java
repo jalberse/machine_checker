@@ -15,6 +15,8 @@ public class TransitionPanel extends JPanel {
         onLabel = new JLabel("On");
         toLabel = new JLabel("to");
 
+        // TODO: Create with correct data from dfa
+        // TODO: Add update DFA transitions when spinners updated
         onList = new ArrayList<>();
         onList.add('0');
         onModel = new SpinnerListModel(onList);

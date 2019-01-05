@@ -26,6 +26,7 @@ public class StatePanel extends JPanel {
         removeTransitionButton = new JButton("-");
         removeTransitionButton.addActionListener(e -> {
             if (!transitions.isEmpty()){
+                // TODO: Update the DFA's transitions
                 transitions.remove(transitions.size()-1);
                 removeAll();
                 add(header);
@@ -41,6 +42,7 @@ public class StatePanel extends JPanel {
         header.add(removeTransitionButton,hc);
         addTransitionButton = new JButton("+");
         addTransitionButton.addActionListener(e -> {
+            // TODO: Update the DFA's transitions
             transitions.add(new TransitionPanel());
             removeAll();
             add(header);
