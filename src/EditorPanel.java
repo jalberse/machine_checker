@@ -70,7 +70,7 @@ public class EditorPanel extends JPanel {
         alphabetLabel = new JLabel("Input Alphabet");
         alphabetField = new JTextField();
         alphabetField.addActionListener(e -> {
-            ((MainFrame)SwingUtilities.windowForComponent(this)).setInputAlpabet(alphabetField.getText());
+            ((MainFrame)SwingUtilities.windowForComponent(this)).setInputAlphabet(alphabetField.getText());
         });
         alphabetPanel.setLayout(new BorderLayout());
         alphabetPanel.add(alphabetLabel,BorderLayout.PAGE_START);

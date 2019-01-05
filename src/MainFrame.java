@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class MainFrame extends JFrame implements DFAListener{
@@ -42,17 +43,28 @@ public class MainFrame extends JFrame implements DFAListener{
     public void dfaUpdated(){
         // Update display
         displayPanel.display(dfa.toString());
-        // Update transition input
-        for (Component c : editorPanel.getComponents()){
-            if (c instanceof StatePanel){
-                for (Component t : ((StatePanel) c).getComponents()){
-                    if (t instanceof TransitionPanel){
-                        // TODO: Check equivalence of input alpabet and state set. If not equal
-                        // TODO: with model's list, update. Make sure we don't lose current value if out of range tho
-                    }
-                }
+
+        // Recursively locate all components of type TransitionPanel to update models
+        ArrayList<Component> transitionPanels = getAllComponents(editorPanel,TransitionPanel.class);
+        for (Component t : transitionPanels){
+            ((TransitionPanel) t).updateOnList(new ArrayList<>(dfa.getInputAlphabet()));
+            ((TransitionPanel) t).updateToList(new ArrayList<>(dfa.getStates()));
+        }
+        revalidate();
+        repaint();
+    }
+
+    // Returns a list of all sub-components which are of type type.
+    public static ArrayList<Component> getAllComponents(final Container c, Class<?> type) {
+        Component[] comps = c.getComponents(); // Get children
+        ArrayList<Component> compList = new ArrayList<>(); // All descendents
+        for (Component comp : comps) {
+            if (comp.getClass() == type) compList.add(comp);
+            if (comp instanceof  Container) {
+                compList.addAll(getAllComponents((Container) comp, type));
             }
         }
+        return compList;
     }
 
     // Methods to modify DFA which editor panel can call (getParent().set*()) etc
@@ -67,16 +79,14 @@ public class MainFrame extends JFrame implements DFAListener{
             System.err.println("Invalid transition");
         }
     }
-    public void addListener(DFAListener listener){
-        dfa.addListener(listener);
-    }
+
     public void addState(Integer id, boolean isAccepting){
         dfa.addState(id,isAccepting);
     }
     public void removeState(Integer id){
         dfa.removeState(id);
     }
-    public void setInputAlpabet(String alpha){
+    public void setInputAlphabet(String alpha){
         dfa.setInputAlphabet(alpha);
     }
     public HashSet<Character> getInputAlphabet(){
