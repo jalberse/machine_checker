@@ -171,6 +171,7 @@ public class DFA {
         }
     }
 
+    // TODO: Handle if this state involved in transition
     public void removeState(Integer id){
         states.remove(id);
         for (DFAListener listener : listeners){
@@ -196,6 +197,14 @@ public class DFA {
             }
         }
         else throw new InvalidTransitionException();
+    }
+
+    public void removeTransition(int fromId, char inputSymbol) {
+        transitionFunction.remove(new TransitionKey(fromId,inputSymbol));
+
+        for (DFAListener listener : listeners) {
+            listener.dfaUpdated();
+        }
     }
 
     public void addListener(DFAListener o){

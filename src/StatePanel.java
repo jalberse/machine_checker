@@ -3,15 +3,17 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class StatePanel extends JPanel {
+    private int stateID;
     private JPanel header;
     private JLabel label;
     private JButton removeTransitionButton;
     private JButton addTransitionButton;
     private ArrayList<TransitionPanel> transitions;
 
-    public StatePanel(int stateID){
+    public StatePanel(int id){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        stateID = id;
         transitions = new ArrayList<>();
 
         header = new JPanel();
@@ -26,7 +28,10 @@ public class StatePanel extends JPanel {
         removeTransitionButton = new JButton("-");
         removeTransitionButton.addActionListener(e -> {
             if (!transitions.isEmpty()){
-                // TODO: Update the DFA's transitions
+                // Remove the last transition from DFA
+                char onSymbol = transitions.get(transitions.size()-1).getOnValue();
+                ((MainFrame)SwingUtilities.windowForComponent(this)).removeTransition(stateID,onSymbol);
+                // Update GUI
                 transitions.remove(transitions.size()-1);
                 removeAll();
                 add(header);
@@ -42,7 +47,10 @@ public class StatePanel extends JPanel {
         header.add(removeTransitionButton,hc);
         addTransitionButton = new JButton("+");
         addTransitionButton.addActionListener(e -> {
-            // TODO: Update the DFA's transitions
+            // Update dfa data
+            
+
+            // Update GUI
             transitions.add(new TransitionPanel());
             removeAll();
             add(header);

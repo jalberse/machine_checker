@@ -71,6 +71,7 @@ public class MainFrame extends JFrame implements DFAListener{
     public void setDescription(String description){
         dfa.setDescription(description);
     }
+
     public void addTransition(Integer fromId, Integer toId, Character inputSymbol){
         try {
             dfa.addTransition(fromId,toId,inputSymbol);
@@ -78,6 +79,9 @@ public class MainFrame extends JFrame implements DFAListener{
         catch (InvalidTransitionException e){
             System.err.println("Invalid transition");
         }
+    }
+    public void removeTransition(int state, char inputSymbol){
+        dfa.removeTransition(state,inputSymbol);
     }
 
     public void addState(Integer id, boolean isAccepting){

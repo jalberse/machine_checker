@@ -32,6 +32,12 @@ public class TransitionPanel extends JPanel {
         add(toSpinner);
     }
 
+    public char getOnValue(){
+        return (char)onSpinner.getValue();
+    }
+    public int getToValue(){
+        return (int)toSpinner.getValue();
+    }
 
     public void updateOnList(ArrayList<Character> list){
         char curr = (char)onSpinner.getValue();
