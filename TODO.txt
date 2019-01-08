@@ -5,8 +5,8 @@
 construction
 - DFA removal methods need before continuing GUI
 - GUI
-	- Set JSpinner models for transitions
 	- Finish interaction with DFA
+		- Edit transitions functionality
 	- Ensure models don't allow invalid transitions to be input, 
 etc...
 	- Word input to test machine

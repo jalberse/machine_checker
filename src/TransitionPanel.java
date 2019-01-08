@@ -15,7 +15,6 @@ public class TransitionPanel extends JPanel {
         onLabel = new JLabel("On");
         toLabel = new JLabel("to");
 
-        // TODO: Create with correct data from dfa
         onList = new ArrayList<>();
         onList.add('0');
         onModel = new SpinnerListModel(onList);
@@ -37,6 +36,8 @@ public class TransitionPanel extends JPanel {
     public int getToValue(){
         return (int)toSpinner.getValue();
     }
+
+    // TODO: Listener. When a value is changed, call dfaupdated.
 
     public void updateOnList(ArrayList<Character> list){
         char curr = (char)onSpinner.getValue();

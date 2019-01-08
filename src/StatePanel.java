@@ -48,6 +48,8 @@ public class StatePanel extends JPanel {
         header.add(removeTransitionButton,hc);
         addTransitionButton = new JButton("+");
         addTransitionButton.addActionListener(e -> {
+            // Update DFA
+
             // Update GUI
             transitions.add(new TransitionPanel());
             removeAll();
