@@ -31,6 +31,7 @@ public class StatePanel extends JPanel {
                 // Remove the last transition from DFA
                 char onSymbol = transitions.get(transitions.size()-1).getOnValue();
                 ((MainFrame)SwingUtilities.windowForComponent(this)).removeTransition(stateID,onSymbol);
+
                 // Update GUI
                 transitions.remove(transitions.size()-1);
                 removeAll();
@@ -47,9 +48,6 @@ public class StatePanel extends JPanel {
         header.add(removeTransitionButton,hc);
         addTransitionButton = new JButton("+");
         addTransitionButton.addActionListener(e -> {
-            // Update dfa data
-            
-
             // Update GUI
             transitions.add(new TransitionPanel());
             removeAll();
@@ -57,6 +55,7 @@ public class StatePanel extends JPanel {
             for(TransitionPanel transition: transitions){
                 add(transition);
             }
+            ((MainFrame)SwingUtilities.windowForComponent(this)).dfaUpdated();
             revalidate();
             repaint();
         });
