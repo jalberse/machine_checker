@@ -105,7 +105,6 @@ public class DFA {
         }
     }
 
-    // TODO: Improve error handling; transition errors should say WHY (missing state, symbol?)
     /*
         Runs the machine on a word
 
@@ -130,17 +129,12 @@ public class DFA {
     private void readSymbol(Character inputSymbol) throws NoSuchTransitionException {
         currentState = transitionFunction.get(new TransitionKey(currentState,inputSymbol));
         if (currentState == null) throw new NoSuchTransitionException();
-        for (DFAListener listener : listeners){
-            listener.dfaUpdated();
-        }
+        fireDfaUpdated();
     }
 
     public void setDescription(String description){
         this.description = description;
-
-        for (DFAListener listener : listeners){
-            listener.dfaUpdated();
-        }
+        fireDfaUpdated();
     }
 
     public void clearTransitionFunction(){
@@ -157,9 +151,7 @@ public class DFA {
         for (int i = 0; i < alpha.length(); ++i){
             inputAlphabet.add(alpha.charAt(i));
         }
-        for (DFAListener listener : listeners){
-            listener.dfaUpdated();
-        }
+        fireDfaUpdated();
     }
 
     /*
@@ -170,15 +162,12 @@ public class DFA {
     public void addState(Integer id, boolean isAccepting){
         states.add(id);
         if (isAccepting) acceptingStates.add(id);
-        for (DFAListener listener : listeners){
-            listener.dfaUpdated();
-        }
+        fireDfaUpdated();
     }
 
-    // TODO: Handle if this state involved in transition
     public void removeState(Integer id){
         states.remove(id);
-        for (DFAListener listener : listeners){
+        for (DFAListener listener : listeners) {
             listener.dfaUpdated();
         }
     }
@@ -195,37 +184,34 @@ public class DFA {
         if (states.contains(fromId) && states.contains(toId) && inputAlphabet.contains(inputSymbol)){
             TransitionKey key = new TransitionKey(fromId,inputSymbol);
             transitionFunction.put(key,toId);
-
-            for (DFAListener listener : listeners){
-                listener.dfaUpdated();
-            }
+            fireDfaUpdated();
         }
         else throw new InvalidTransitionException();
     }
 
     public void removeTransition(int fromId, char inputSymbol) {
         transitionFunction.remove(new TransitionKey(fromId,inputSymbol));
-        for (DFAListener listener : listeners) {
-            listener.dfaUpdated();
-        }
+        fireDfaUpdated();
     }
 
     public void addAcceptingState(int id){
         acceptingStates.add(id);
-        for (DFAListener listener : listeners) {
-            listener.dfaUpdated();
-        }
+        fireDfaUpdated();
     }
 
     public void removeAcceptingState(int id){
         acceptingStates.remove(id);
-        for (DFAListener listener : listeners) {
-            listener.dfaUpdated();
-        }
+        fireDfaUpdated();
     }
 
     public void addListener(DFAListener o){
         listeners.add(o);
+    }
+
+    public void fireDfaUpdated(){
+        for (DFAListener listener : listeners) {
+            listener.dfaUpdated();
+        }
     }
 
     // Getters
