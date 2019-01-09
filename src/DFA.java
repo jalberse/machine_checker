@@ -203,14 +203,6 @@ public class DFA {
         else throw new InvalidTransitionException();
     }
 
-    public void addTransitionIgnoreListeners(Integer fromId, Integer toId, Character inputSymbol) throws InvalidTransitionException {
-        if (states.contains(fromId) && states.contains(toId) && inputAlphabet.contains(inputSymbol)){
-            TransitionKey key = new TransitionKey(fromId,inputSymbol);
-            transitionFunction.put(key,toId);
-        }
-        else throw new InvalidTransitionException();
-    }
-
     public void removeTransition(int fromId, char inputSymbol) {
         transitionFunction.remove(new TransitionKey(fromId,inputSymbol));
 

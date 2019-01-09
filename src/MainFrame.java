@@ -41,28 +41,17 @@ public class MainFrame extends JFrame implements DFAListener{
 
     // DFA has been changed - update UI accordingly
     public void dfaUpdated(){
-        // Update display
-        displayPanel.display(dfa.toString());
-
-        // Recursively locate all components of type TransitionPanel to update models
+        // Recursively locate all components of type TransitionPanel to update GUI
         ArrayList<Component> transitionPanels = getAllComponents(editorPanel,TransitionPanel.class);
-        // Update the GUI
+
+        // Update the editor GUI (i.e. fix transitions to be valid)
         for (Component t : transitionPanels){
             ((TransitionPanel) t).updateOnList(new ArrayList<>(dfa.getInputAlphabet()));
             ((TransitionPanel) t).updateToList(new ArrayList<>(dfa.getStates()));
         }
-        dfa.clearTransitionFunction();
-        // Update the transitions in the DFA
-        for (Component t : transitionPanels){
-            int state = ((TransitionPanel)t).getState();
-            char onSymbol = ((TransitionPanel)t).getOnValue();
-            int toState = ((TransitionPanel)t).getToValue();
-            try {
-                dfa.addTransitionIgnoreListeners(state,toState,onSymbol);
-            } catch( InvalidTransitionException e ){
-                System.err.println("Invalid Transition");
-            }
-        }
+
+        // Update display
+        displayPanel.display(dfa.toString());
 
         revalidate();
         repaint();
@@ -71,7 +60,7 @@ public class MainFrame extends JFrame implements DFAListener{
     // Returns a list of all sub-components which are of type type.
     public static ArrayList<Component> getAllComponents(final Container c, Class<?> type) {
         Component[] comps = c.getComponents(); // Get children
-        ArrayList<Component> compList = new ArrayList<>(); // All descendents
+        ArrayList<Component> compList = new ArrayList<>(); // All descendants
         for (Component comp : comps) {
             if (comp.getClass() == type) compList.add(comp);
             if (comp instanceof  Container) {
@@ -94,6 +83,7 @@ public class MainFrame extends JFrame implements DFAListener{
             System.err.println("Invalid transition");
         }
     }
+
     public void removeTransition(int state, char inputSymbol){
         dfa.removeTransition(state,inputSymbol);
     }

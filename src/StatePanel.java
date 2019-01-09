@@ -50,8 +50,16 @@ public class StatePanel extends JPanel {
         addTransitionButton.addActionListener(e -> {
             TransitionPanel transition = new TransitionPanel(stateID);
             // Add transition editing functionality
-            transition.addChangeListener( e2 ->{
-                ((MainFrame)SwingUtilities.windowForComponent(this)).dfaUpdated();
+            transition.addChangeListener( e2 -> {
+                // Remove the old transition
+                ((MainFrame)SwingUtilities.windowForComponent(this)).removeTransition(
+                        transition.getState(),transition.getOldOnSymbol());
+
+                // Add the new transition
+                int state = transition.getState();
+                char onSymbol = transition.getOnValue();
+                int toState = transition.getToValue();
+                ((MainFrame)SwingUtilities.windowForComponent(this)).addTransition(state,toState,onSymbol);
             });
             // Update GUI
             transitions.add(transition);
