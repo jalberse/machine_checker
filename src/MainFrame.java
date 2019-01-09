@@ -92,6 +92,15 @@ public class MainFrame extends JFrame implements DFAListener{
     public void addState(Integer id, boolean isAccepting){
         dfa.addState(id,isAccepting);
     }
+
+    public void addAcceptingState(int id){
+        dfa.addAcceptingState(id);
+    }
+
+    public void removeAcceptingState(int id){
+        dfa.removeAcceptingState(id);
+    }
+
     public void removeState(Integer id){
         dfa.removeState(id);
         Iterator<Character> it = dfa.getInputAlphabet().iterator();

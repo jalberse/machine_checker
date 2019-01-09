@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
 public class StatePanel extends JPanel {
@@ -8,6 +9,7 @@ public class StatePanel extends JPanel {
     private JLabel label;
     private JButton removeTransitionButton;
     private JButton addTransitionButton;
+    private JCheckBox acceptingCheckBox;
     private ArrayList<TransitionPanel> transitions;
 
     public StatePanel(int id){
@@ -87,6 +89,18 @@ public class StatePanel extends JPanel {
 
         hc.gridx = 2;
         header.add(addTransitionButton,hc);
+
+        acceptingCheckBox = new JCheckBox();
+        acceptingCheckBox.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.DESELECTED){
+                ((MainFrame)SwingUtilities.windowForComponent(this)).removeAcceptingState(stateID);
+            }
+            else{
+                ((MainFrame)SwingUtilities.windowForComponent(this)).addAcceptingState(stateID);
+            }
+        });
+        hc.gridx = 3;
+        header.add(acceptingCheckBox,hc);
 
         add(header);
     }

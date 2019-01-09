@@ -94,6 +94,7 @@ public class EditorPanel extends JPanel {
             }
             // Update data
             ((MainFrame)SwingUtilities.windowForComponent(this)).removeState(states.size() - 1);
+            ((MainFrame)SwingUtilities.windowForComponent(this)).removeAcceptingState(states.size()-1);
             // Update gui
             states.remove(states.size()-1);
             statesPanel.removeAll();

@@ -210,6 +210,20 @@ public class DFA {
         }
     }
 
+    public void addAcceptingState(int id){
+        acceptingStates.add(id);
+        for (DFAListener listener : listeners) {
+            listener.dfaUpdated();
+        }
+    }
+
+    public void removeAcceptingState(int id){
+        acceptingStates.remove(id);
+        for (DFAListener listener : listeners) {
+            listener.dfaUpdated();
+        }
+    }
+
     public void addListener(DFAListener o){
         listeners.add(o);
     }
