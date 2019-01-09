@@ -48,14 +48,17 @@ public class StatePanel extends JPanel {
         header.add(removeTransitionButton,hc);
         addTransitionButton = new JButton("+");
         addTransitionButton.addActionListener(e -> {
-            // Update DFA
-
+            TransitionPanel transition = new TransitionPanel(stateID);
+            // Add transition editing functionality
+            transition.addChangeListener( e2 ->{
+                ((MainFrame)SwingUtilities.windowForComponent(this)).dfaUpdated();
+            });
             // Update GUI
-            transitions.add(new TransitionPanel());
+            transitions.add(transition);
             removeAll();
             add(header);
-            for(TransitionPanel transition: transitions){
-                add(transition);
+            for(TransitionPanel t: transitions){
+                add(t);
             }
             ((MainFrame)SwingUtilities.windowForComponent(this)).dfaUpdated();
             revalidate();
@@ -66,6 +69,4 @@ public class StatePanel extends JPanel {
 
         add(header);
     }
-
-    // TODO: Add/remove transition on button click
 }

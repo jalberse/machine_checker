@@ -1,7 +1,10 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
 
 public class TransitionPanel extends JPanel {
+    private int stateID; // tracks which state this transition leads from
     private JLabel onLabel;
     private JLabel toLabel;
     private ArrayList<Character> onList; // Necessary to keep updated compare on DFA update.
@@ -11,7 +14,8 @@ public class TransitionPanel extends JPanel {
     private SpinnerListModel toModel;
     private JSpinner toSpinner;
 
-    public TransitionPanel () {
+    public TransitionPanel (int id) {
+        stateID = id;
         onLabel = new JLabel("On");
         toLabel = new JLabel("to");
 
@@ -30,14 +34,19 @@ public class TransitionPanel extends JPanel {
         add(toSpinner);
     }
 
-    public char getOnValue(){
-        return (char)onSpinner.getValue();
+    public void addChangeListener(ChangeListener listener){
+        listenerList.add(ChangeListener.class,listener);
     }
+
+    public char getOnValue(){
+        return (char) onSpinner.getValue();
+    }
+
     public int getToValue(){
         return (int)toSpinner.getValue();
     }
 
-    // TODO: Listener. When a value is changed, call dfaupdated.
+    public int getState() { return stateID; }
 
     public void updateOnList(ArrayList<Character> list){
         char curr = (char)onSpinner.getValue();

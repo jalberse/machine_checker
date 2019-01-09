@@ -143,6 +143,10 @@ public class DFA {
         }
     }
 
+    public void clearTransitionFunction(){
+        transitionFunction.clear();
+    }
+
     /*
         Defines the input alphabet as all characters present in the string. Overwrites existing inputAlphabet if any.
         Repeated characters are not added.
@@ -195,6 +199,14 @@ public class DFA {
             for (DFAListener listener : listeners){
                 listener.dfaUpdated();
             }
+        }
+        else throw new InvalidTransitionException();
+    }
+
+    public void addTransitionIgnoreListeners(Integer fromId, Integer toId, Character inputSymbol) throws InvalidTransitionException {
+        if (states.contains(fromId) && states.contains(toId) && inputAlphabet.contains(inputSymbol)){
+            TransitionKey key = new TransitionKey(fromId,inputSymbol);
+            transitionFunction.put(key,toId);
         }
         else throw new InvalidTransitionException();
     }

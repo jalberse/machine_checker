@@ -46,10 +46,24 @@ public class MainFrame extends JFrame implements DFAListener{
 
         // Recursively locate all components of type TransitionPanel to update models
         ArrayList<Component> transitionPanels = getAllComponents(editorPanel,TransitionPanel.class);
+        // Update the GUI
         for (Component t : transitionPanels){
             ((TransitionPanel) t).updateOnList(new ArrayList<>(dfa.getInputAlphabet()));
             ((TransitionPanel) t).updateToList(new ArrayList<>(dfa.getStates()));
         }
+        dfa.clearTransitionFunction();
+        // Update the transitions in the DFA
+        for (Component t : transitionPanels){
+            int state = ((TransitionPanel)t).getState();
+            char onSymbol = ((TransitionPanel)t).getOnValue();
+            int toState = ((TransitionPanel)t).getToValue();
+            try {
+                dfa.addTransitionIgnoreListeners(state,toState,onSymbol);
+            } catch( InvalidTransitionException e ){
+                System.err.println("Invalid Transition");
+            }
+        }
+
         revalidate();
         repaint();
     }
