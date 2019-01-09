@@ -5,16 +5,9 @@
 construction
 - DFA removal methods need before continuing GUI
 - GUI
-	- Finish interaction with DFA
-		- Edit transitions functionality
-	- Ensure models don't allow invalid transitions to be input, 
-etc...
 	- Word input to test machine
-		- Batch eventually
-	- Graphical display, not just 
-text
-	- Load a DFA file in an update 
-accordingly
+	- Graphical display, not just text
+	- Load a DFA file and update accordingly
 - Run against a batch of examples/counter-examples to determine correctness
 	- User classification of examples
 	- Batch == store examples/read from file, I think

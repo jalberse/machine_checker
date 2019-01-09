@@ -21,6 +21,11 @@ w, does or does not match the classification of w provided by the user.
 
 ### Further development
 
+#### Graphical Interface
+
+i.e. node and edge represenation for the display. Maybe Swing wasn't the 
+best choice.
+
 #### Equivalence with Regular Expressions and other DFAs 
 
 We must check the DFA against examples because this program is intended 
