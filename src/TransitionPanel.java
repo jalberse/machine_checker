@@ -7,6 +7,8 @@ public class TransitionPanel extends JPanel {
     private int stateID; // tracks which state this transition leads from
     private char oldOnSymbol;
     private char currOnSymbol;
+    private int oldToState;
+    private int currToState;
     private JLabel onLabel;
     private JLabel toLabel;
     private ArrayList<Character> onList; // Necessary to keep updated compare on DFA update.
@@ -23,6 +25,8 @@ public class TransitionPanel extends JPanel {
 
         oldOnSymbol = '0';
         currOnSymbol = '0';
+        oldToState = 0;
+        currToState = 0;
 
         onList = new ArrayList<>();
         onList.add('0');
@@ -38,6 +42,8 @@ public class TransitionPanel extends JPanel {
         toModel = new SpinnerListModel(toList);
         toSpinner = new JSpinner(toModel);
         toSpinner.addChangeListener(e -> {
+            oldToState = currToState;
+            currToState = (int)toSpinner.getValue();
             fireChangeEvent();
         });
         add(onLabel);
@@ -60,6 +66,8 @@ public class TransitionPanel extends JPanel {
     public char getOldOnSymbol(){
         return oldOnSymbol;
     }
+
+    public int getOldToState(){ return oldToState; }
 
     public char getOnValue(){
         return (char) onSpinner.getValue();

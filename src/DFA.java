@@ -205,7 +205,6 @@ public class DFA {
 
     public void removeTransition(int fromId, char inputSymbol) {
         transitionFunction.remove(new TransitionKey(fromId,inputSymbol));
-
         for (DFAListener listener : listeners) {
             listener.dfaUpdated();
         }

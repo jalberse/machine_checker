@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class MainFrame extends JFrame implements DFAListener{
 
@@ -93,6 +94,10 @@ public class MainFrame extends JFrame implements DFAListener{
     }
     public void removeState(Integer id){
         dfa.removeState(id);
+        Iterator<Character> it = dfa.getInputAlphabet().iterator();
+        while (it.hasNext()){
+            dfa.removeTransition(id,it.next());
+        }
     }
     public void setInputAlphabet(String alpha){
         dfa.setInputAlphabet(alpha);

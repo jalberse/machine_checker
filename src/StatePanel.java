@@ -47,13 +47,25 @@ public class StatePanel extends JPanel {
         hc.gridx = 1;
         header.add(removeTransitionButton,hc);
         addTransitionButton = new JButton("+");
+
         addTransitionButton.addActionListener(e -> {
             TransitionPanel transition = new TransitionPanel(stateID);
-            // Add transition editing functionality
+
+            // Listen for transition input for each transition
             transition.addChangeListener( e2 -> {
-                // Remove the old transition
-                ((MainFrame)SwingUtilities.windowForComponent(this)).removeTransition(
-                        transition.getState(),transition.getOldOnSymbol());
+                // Remove the old transition from DFA unless the same transition in another TransitionPanel
+                boolean delete = true;
+                for (TransitionPanel t : transitions){
+                    if (t.getOnValue() == transition.getOldOnSymbol() && t.getOldToState() == transition.getOldToState()){
+                        // A duplicate transition exists, do not delete
+                        delete = false;
+                    }
+                }
+                if (delete){
+                    ((MainFrame)SwingUtilities.windowForComponent(this)).removeTransition(
+                            transition.getState(),transition.getOldOnSymbol());
+
+                }
 
                 // Add the new transition
                 int state = transition.getState();
@@ -63,7 +75,7 @@ public class StatePanel extends JPanel {
             });
             // Update GUI
             transitions.add(transition);
-            removeAll();
+            removeAll(); // remove and add back transition panels to prepare for repainting (maintain order)
             add(header);
             for(TransitionPanel t: transitions){
                 add(t);
@@ -72,6 +84,7 @@ public class StatePanel extends JPanel {
             revalidate();
             repaint();
         });
+
         hc.gridx = 2;
         header.add(addTransitionButton,hc);
 
