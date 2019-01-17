@@ -4,8 +4,6 @@
 - Additional Unit tests for machine 
 construction
 - GUI
-	- Edit accepting/non-accepting for states
-		- Simple, add check-bo to state panel and check.
 	- Word input to test machine
 	- Graphical display, not just text
 	- Load a DFA file and update accordingly
