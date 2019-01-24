@@ -23,8 +23,7 @@ w, does or does not match the classification of w provided by the user.
 
 #### Graphical Interface
 
-i.e. node and edge represenation for the display. Maybe Swing wasn't the 
-best choice.
+i.e. node and edge represenation for the display.
 
 #### Equivalence with Regular Expressions and other DFAs 
 
